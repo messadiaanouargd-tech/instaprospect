@@ -11,9 +11,14 @@ load_dotenv()
 
 app = FastAPI(title="InstaProspect API", version="1.0.0")
 
+# Updated CORS to strictly allow your Vercel Frontend
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=[
+        "https://instaprospect-ui.vercel.app", 
+        "http://localhost:5173"  # Kept localhost so you can still test locally!
+    ],
+    allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
